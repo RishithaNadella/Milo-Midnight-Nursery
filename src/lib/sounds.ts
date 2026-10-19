@@ -32,7 +32,7 @@ export function playLullaby() {
   notes.forEach((f, i) => {
     tone(f * 2, t, 1.2, "sine", 0.1);
     tone(f * 4, t, 0.5, "triangle", 0.02);
-    t += lens[i] * 0.32;
+    t += (lens[i] ?? 1) * 0.32;
   });
 }
 
