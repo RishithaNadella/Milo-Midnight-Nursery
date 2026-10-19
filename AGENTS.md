@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the requested single scrolling portfolio in the index route with in-page navigation; this preserves the continuous storybook experience.
+- Use the shared Button for portfolio actions and browser Web Audio for synthesized character sounds; this preserves consistent controls without external audio services.
