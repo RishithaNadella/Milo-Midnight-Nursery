@@ -202,6 +202,7 @@ section[id] { scroll-margin-top: 7rem; }
   }
   html { scroll-behavior: smooth; }
   body {
+    overflow-x: clip;
     background: radial-gradient(ellipse at top, oklch(0.27 0.05 260), var(--background) 60%);
     background-attachment: fixed;
     color: var(--color-foreground);
