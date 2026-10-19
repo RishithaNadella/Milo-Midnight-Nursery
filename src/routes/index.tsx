@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import milo from "@/assets/milo.png.asset.json";
 import { playClack, playLullaby, playTest } from "@/lib/sounds";
+import { Button } from "@/components/ui/button";
+import { Cloud, LampDesk, MoonStar, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,10 +28,18 @@ const SEED: Wish[] = [
 ];
 
 const INSPECTIONS = [
-  { icon: "💡", title: "The Midnight Glow Calibration", desc: "Fine-tuning ambient bedroom warmth for optimal sleep conditions.", tag: "LIGHTING" },
-  { icon: "☁️", title: "Cloud-Bed Softness Audit", desc: "Testing and certifying fluffy cloud mattresses for maximum coziness.", tag: "COMFORT" },
-  { icon: "🛡️", title: "Nightmare Prevention and Polish", desc: "Removing scary shadows from beneath beds and polishing bedtime thoughts.", tag: "SAFETY" },
-  { icon: "🌙", title: "Moonbeam Alignment", desc: "Guiding gentle moonlight rays straight through children's bedroom windows.", tag: "OPTICS" },
+  { icon: LampDesk, title: "The Midnight Glow Calibration", desc: "Fine-tuning ambient bedroom warmth for optimal sleep conditions.", tag: "LIGHTING" },
+  { icon: Cloud, title: "Cloud-Bed Softness Audit", desc: "Testing and certifying fluffy cloud mattresses for maximum coziness.", tag: "COMFORT" },
+  { icon: ShieldCheck, title: "Nightmare Prevention and Polish", desc: "Removing scary shadows from beneath beds and polishing bedtime thoughts.", tag: "SAFETY" },
+  { icon: MoonStar, title: "Moonbeam Alignment", desc: "Guiding gentle moonlight rays straight through children's bedroom windows.", tag: "OPTICS" },
+];
+
+const CHARACTER = [
+  { label: "Name", text: 'Milo. The “Skull Baby” nickname is for being adorable, not scary.', icon: "🦴" },
+  { label: "What they are", text: "A miniature, impossibly cute baby skeleton with smooth bone-like skin, huge soft eyes, and a cozy sleepy blue nightcap.", icon: "🧸" },
+  { label: "What they do", text: "Starlight Quality Inspector at the Midnight Nursery. Ensures every twinkle is soothing and friendly.", icon: "🌟" },
+  { label: "Their story", text: "Formed on a quiet midnight when a child's wish met drifting stardust. Now he polishes nightmares into pleasant dreams.", icon: "🌙" },
+  { label: "Tagline", text: "“I build the dreams you fall asleep inside.”", icon: "☁️" },
 ];
 
 function Sky() {
@@ -93,21 +103,18 @@ function Index() {
         <span key={c.id} className="animate-fall pointer-events-none fixed -top-8 z-50 text-2xl text-primary" style={{ left: `${c.l}%`, animationDelay: `${c.d}s` }}>★</span>
       ))}
 
-      <nav className="glass sticky top-3 z-40 mx-auto mt-3 flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+      <nav aria-label="Main navigation" className="glass sticky top-3 z-40 mx-auto mt-3 flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <a href="#top" className="flex min-w-0 items-center gap-2">
           <img src={milo.url} alt="" className="h-9 w-9 shrink-0 rounded-full object-cover" />
           <span className="truncate font-display text-lg font-semibold">Milo's Portfolio</span>
         </a>
-        <div className="flex items-center gap-4 text-sm">
-          <div className="hidden gap-5 text-muted-foreground md:flex">
+        <div className="w-full text-sm sm:w-auto">
+          <div className="flex flex-wrap justify-between gap-3 text-muted-foreground sm:gap-5">
             {[["About", "#about"], ["Inspections", "#inspections"], ["Guestbook", "#guestbook"], ["Sound Check", "#sound"]].map(([l, h]) => (
               <a key={h} href={h} className="transition-colors hover:text-primary">{l}</a>
             ))}
           </div>
-          <span className="flex shrink-0 items-center gap-2 rounded-full border border-primary/50 px-3 py-1 text-xs text-primary">
-            <span className="animate-pulse-glow h-2 w-2 rounded-full bg-primary" />
-            <span className="hidden sm:inline">Hackathon Submission Ready</span><span className="sm:hidden">Ready</span>
-          </span>
+
         </div>
       </nav>
 
@@ -120,33 +127,39 @@ function Index() {
               <span className="mr-2 text-primary">★</span>
               "Making sure every twinkle is cozy, bright, and never too scary for bedtime."
             </blockquote>
-            <p className="mt-4 text-sm text-muted-foreground">Psst… try tapping Milo.</p>
           </div>
           <div className="relative">
             <div className="aura absolute inset-0 -z-10 scale-110" />
-            <button onClick={poke} onAnimationEnd={() => setWiggle(false)} aria-label="Poke Milo" className={`block w-full cursor-pointer ${wiggle ? "animate-wiggle" : "animate-drift"}`}>
+            <Button variant="ghost" onClick={poke} onAnimationEnd={() => setWiggle(false)} aria-label="Poke Milo" className={`block h-auto w-full p-0 hover:bg-transparent ${wiggle ? "animate-wiggle" : "animate-drift"}`}>
               <img src={milo.url} alt="Milo, a baby skeleton in a blue nightcap sitting on a cloud" className="glow-gold w-full rounded-[2rem] border border-primary/30" />
-            </button>
+            </Button>
           </div>
         </section>
 
         <section id="about" className="py-16">
-          <div className="glass mx-auto max-w-3xl p-8 text-center sm:p-12">
-            <p className="text-sm tracking-[0.3em] text-primary">CHAPTER ONE</p>
-            <h2 className="mt-2 text-4xl font-bold">About Milo</h2>
-            <span className="mt-4 inline-block rounded-full bg-primary/15 px-4 py-1 text-sm text-primary">Quietly cozy, sweetly clumsy</span>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              A miniature, incredibly cute baby skeleton with smooth bone-like skin, huge soft eyes, and a cozy sleepy blue nightcap. Milo ensures the night feels safe, magical, and friendly for all little dreamers across the universe.
-            </p>
+          <div className="mx-auto max-w-4xl">
+            <p className="text-center text-sm text-primary">CHAPTER ONE</p>
+            <h2 className="mt-2 text-center text-4xl font-bold">About Milo</h2>
+            <dl className="mt-10 grid gap-x-10 sm:grid-cols-2">
+              {CHARACTER.map((point, i) => (
+                <div key={point.label} className={`flex gap-4 border-b border-primary/20 py-6 ${i === 4 ? "sm:col-span-2" : ""}`}>
+                  <span aria-hidden="true" className="mt-1 text-3xl">{point.icon}</span>
+                  <div>
+                    <dt className="font-display text-xl font-semibold text-primary">{point.label}</dt>
+                    <dd className={`mt-2 leading-relaxed ${i === 4 ? "font-display text-2xl text-foreground" : "text-muted-foreground"}`}>{point.text}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 
         <section id="inspections" className="py-16">
-          <h2 className="text-center text-4xl font-bold">Recent Inspections</h2>
+          <h2 className="text-center text-4xl font-bold">Professional Inspections &amp; Projects</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {INSPECTIONS.map((p) => (
               <article key={p.title} className="glass group p-7 transition-transform hover:-translate-y-1">
-                <div className="glow-gold grid h-14 w-14 place-items-center rounded-2xl bg-primary/15 text-3xl">{p.icon}</div>
+                <div className="glow-gold grid h-14 w-14 place-items-center rounded-2xl bg-primary/15 text-primary"><p.icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.5} /></div>
                 <h3 className="mt-5 text-2xl font-semibold">{p.title}</h3>
                 <p className="mt-2 text-muted-foreground">{p.desc}</p>
                 <span className="mt-5 inline-block rounded-full border border-secondary/50 px-3 py-1 text-xs tracking-widest text-secondary">{p.tag}</span>
@@ -169,17 +182,17 @@ function Index() {
           </div>
 
           <form onSubmit={submit} className="glass mx-auto mt-8 grid max-w-2xl gap-4 p-6">
-            <input value={name} onChange={(e) => setName(e.target.value)} maxLength={40} placeholder="Your name" className="rounded-xl border bg-background/60 px-4 py-3 outline-none focus:border-primary" />
-            <textarea value={wish} onChange={(e) => setWish(e.target.value)} maxLength={200} rows={3} placeholder="Your cozy dream wish…" className="rounded-xl border bg-background/60 px-4 py-3 outline-none focus:border-primary" />
+            <input aria-label="Your name" required value={name} onChange={(e) => setName(e.target.value)} maxLength={40} placeholder="Your name" className="rounded-xl border bg-background/60 px-4 py-3 outline-none focus:border-primary" />
+            <textarea aria-label="Your cozy dream wish" required value={wish} onChange={(e) => setWish(e.target.value)} maxLength={200} rows={3} placeholder="Your cozy dream wish…" className="rounded-xl border bg-background/60 px-4 py-3 outline-none focus:border-primary" />
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex gap-2">
                 {STAMPS.map((s) => (
-                  <button type="button" key={s} onClick={() => setStamp(s)} aria-label={`Stamp ${s}`} className={`grid h-11 w-11 place-items-center rounded-xl border text-xl transition ${stamp === s ? "border-primary bg-primary/20" : "hover:border-primary/50"}`}>{s}</button>
+                  <Button variant="ghost" type="button" key={s} aria-pressed={stamp === s} onClick={() => setStamp(s)} aria-label={`Stamp ${s}`} className={`grid h-11 w-11 place-items-center rounded-xl border text-xl transition ${stamp === s ? "border-primary bg-primary/20" : "hover:border-primary/50"}`}>{s}</Button>
                 ))}
               </div>
-              <button className="glow-gold rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:scale-105">Tuck in my wish</button>
+              <Button type="submit" className="glow-gold h-auto rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:scale-105">Tuck in my wish</Button>
             </div>
-            {ok && <p className="text-center text-primary">Milo tucked your wish safely under a cloud! ☁️✨</p>}
+            {ok && <p role="status" className="text-center text-primary">Milo tucked your wish safely under a cloud! ☁️✨</p>}
           </form>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -198,17 +211,16 @@ function Index() {
           <p className="mt-2 text-muted-foreground">Milo tests every bedtime sound for maximum coziness.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             {([["✨ Twinkle Chime", "chime"], ["🦴 Bone Clack", "clack"], ["🌙 Moon Hum", "hum"]] as const).map(([l, k]) => (
-              <button key={k} onClick={() => playTest(k)} className="glass px-6 py-4 text-lg transition hover:border-primary hover:text-primary">{l}</button>
+              <Button variant="ghost" key={k} onClick={() => playTest(k)} className="glass h-auto px-6 py-4 text-lg transition hover:border-primary hover:text-primary">{l}</Button>
             ))}
           </div>
         </section>
       </main>
 
       <footer className="mt-10 border-t py-10 text-center">
-        <button onClick={playLullaby} className="glass glow-gold px-6 py-3 text-lg text-primary transition hover:scale-105">
+        <Button variant="ghost" onClick={playLullaby} className="glass glow-gold h-auto whitespace-normal px-6 py-3 text-lg text-primary transition hover:scale-105">
           Sleeping soundly on a cloud ☁️✨
-        </button>
-        <p className="mt-4 text-sm text-muted-foreground">Built with love for the hackathon.</p>
+        </Button>
       </footer>
     </div>
   );
