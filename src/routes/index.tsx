@@ -55,7 +55,7 @@ function Index() {
   const [wishes, setWishes] = useState<Wish[]>(SEED);
   const [name, setName] = useState("");
   const [wish, setWish] = useState("");
-  const [stamp, setStamp] = useState(STAMPS[0]);
+  const [stamp, setStamp] = useState<string>("🌟");
   const [ok, setOk] = useState(false);
   const [visits, setVisits] = useState(0);
 
