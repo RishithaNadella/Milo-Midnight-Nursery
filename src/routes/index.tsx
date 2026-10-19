@@ -39,7 +39,7 @@ const CHARACTER = [
   { label: "What they are", text: "A miniature, impossibly cute baby skeleton with smooth bone-like skin, huge soft eyes, and a cozy sleepy blue nightcap.", icon: "🧸" },
   { label: "What they do", text: "Starlight Quality Inspector at the Midnight Nursery. Ensures every twinkle is soothing and friendly.", icon: "🌟" },
   { label: "Their story", text: "Formed on a quiet midnight when a child's wish met drifting stardust. Now he polishes nightmares into pleasant dreams.", icon: "🌙" },
-  { label: "Tagline", text: "“Making sure every twinkle is cozy, bright, and never too scary for bedtime.”", icon: "☁️" },
+  { label: "Tagline", text: "“I build the dreams you fall asleep inside.”", icon: "☁️" },
 ];
 
 function Sky() {
