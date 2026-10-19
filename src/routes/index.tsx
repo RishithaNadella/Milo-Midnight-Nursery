@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import milo from "@/assets/milo.png.asset.json";
+import glowImage from "@/assets/inspect-glow.jpg";
+import cloudImage from "@/assets/inspect-cloud.jpg";
+import shadowImage from "@/assets/inspect-shadow.jpg";
+import moonImage from "@/assets/inspect-moon.jpg";
 import { playClack, playLullaby, playTest } from "@/lib/sounds";
 import { Button } from "@/components/ui/button";
 import { Cloud, LampDesk, MoonStar, ShieldCheck } from "lucide-react";
@@ -28,10 +32,10 @@ const SEED: Wish[] = [
 ];
 
 const INSPECTIONS = [
-  { icon: LampDesk, title: "The Midnight Glow Calibration", desc: "Fine-tuning ambient bedroom warmth for optimal sleep conditions.", tag: "LIGHTING" },
-  { icon: Cloud, title: "Cloud-Bed Softness Audit", desc: "Testing and certifying fluffy cloud mattresses for maximum coziness.", tag: "COMFORT" },
-  { icon: ShieldCheck, title: "Nightmare Prevention and Polish", desc: "Removing scary shadows from beneath beds and polishing bedtime thoughts.", tag: "SAFETY" },
-  { icon: MoonStar, title: "Moonbeam Alignment", desc: "Guiding gentle moonlight rays straight through children's bedroom windows.", tag: "OPTICS" },
+  { icon: LampDesk, image: glowImage, alt: "Milo adjusting a glowing bedside lamp in the nursery", title: "The Midnight Glow Calibration", desc: "Fine-tuning ambient bedroom warmth for optimal sleep conditions.", tag: "LIGHTING" },
+  { icon: Cloud, image: cloudImage, alt: "Milo testing a fluffy cloud mattress beneath the stars", title: "Cloud-Bed Softness Audit", desc: "Testing and certifying fluffy cloud mattresses for maximum coziness.", tag: "COMFORT" },
+  { icon: ShieldCheck, image: shadowImage, alt: "Milo turning under-bed shadows into friendly golden sparkles", title: "Nightmare Prevention and Polish", desc: "Removing scary shadows from beneath beds and polishing bedtime thoughts.", tag: "SAFETY" },
+  { icon: MoonStar, image: moonImage, alt: "Milo guiding a moonbeam through a bedroom window", title: "Moonbeam Alignment", desc: "Guiding gentle moonlight rays straight through children's bedroom windows.", tag: "OPTICS" },
 ];
 
 const CHARACTER = [
@@ -39,7 +43,7 @@ const CHARACTER = [
   { label: "What they are", text: "A miniature, impossibly cute baby skeleton with smooth bone-like skin, huge soft eyes, and a cozy sleepy blue nightcap.", icon: "🧸" },
   { label: "What they do", text: "Starlight Quality Inspector at the Midnight Nursery. Ensures every twinkle is soothing and friendly.", icon: "🌟" },
   { label: "Their story", text: "Formed on a quiet midnight when a child's wish met drifting stardust. Now he polishes nightmares into pleasant dreams.", icon: "🌙" },
-  { label: "Tagline", text: "“I build the dreams you fall asleep inside.”", icon: "☁️" },
+  { label: "Tagline", text: "“Making sure every twinkle is cozy, bright, and never too scary for bedtime.”", icon: "☁️" },
 ];
 
 function Sky() {
@@ -158,11 +162,14 @@ function Index() {
           <h2 className="text-center text-4xl font-bold">Professional Inspections &amp; Projects</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {INSPECTIONS.map((p) => (
-              <article key={p.title} className="glass group p-7 transition-transform hover:-translate-y-1">
+              <article key={p.title} className="glass group overflow-hidden transition-transform hover:-translate-y-1">
+                <img src={p.image} alt={p.alt} loading="lazy" width={1024} height={640} className="aspect-[8/5] w-full object-cover" />
+                <div className="p-7">
                 <div className="glow-gold grid h-14 w-14 place-items-center rounded-2xl bg-primary/15 text-primary"><p.icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.5} /></div>
                 <h3 className="mt-5 text-2xl font-semibold">{p.title}</h3>
                 <p className="mt-2 text-muted-foreground">{p.desc}</p>
                 <span className="mt-5 inline-block rounded-full border border-secondary/50 px-3 py-1 text-xs tracking-widest text-secondary">{p.tag}</span>
+                </div>
               </article>
             ))}
           </div>
