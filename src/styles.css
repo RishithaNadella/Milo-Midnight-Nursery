@@ -186,6 +186,16 @@
 .animate-fall { animation: fall 2.4s ease-in forwards }
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite }
 
+section[id] { scroll-margin-top: 7rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-twinkle, .animate-drift, .animate-wiggle, .animate-fall, .animate-pulse-glow {
+    animation: none;
+  }
+  .animate-fall { display: none; }
+  html { scroll-behavior: auto; }
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
