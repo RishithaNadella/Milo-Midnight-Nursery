@@ -129,7 +129,7 @@ function Index() {
             </blockquote>
           </div>
           <div className="relative">
-            <div className="aura absolute inset-0 -z-10 scale-110" />
+            <div className="aura absolute inset-0 -z-10" />
             <Button variant="ghost" onClick={poke} onAnimationEnd={() => setWiggle(false)} aria-label="Poke Milo" className={`block h-auto w-full p-0 hover:bg-transparent ${wiggle ? "animate-wiggle" : "animate-drift"}`}>
               <img src={milo.url} alt="Milo, a baby skeleton in a blue nightcap sitting on a cloud" className="glow-gold w-full rounded-[2rem] border border-primary/30" />
             </Button>
